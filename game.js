@@ -29,7 +29,37 @@ function boxClicked(e) {
         }
 
         currentPlayer = currentPlayer == X_TEXT ? O_TEXT : X_TEXT
+
+        if (currentPlayer == O_TEXT) {
+            computerTurn() // Computer plays after the user square is chosen
+        }
     }
+}
+
+//Computer selects a random, empty space
+function computerTurn() {
+    const emptySpaces = spaces.reduce((acc, elem, index) => {
+        if (elem == null) {
+            acc.push(index)
+        }
+        return acc
+    }, [])
+    
+    const randomIndex = Math.floor(Math.random() * emptySpaces.length)
+    const computerMove = emptySpaces[randomIndex]
+    
+    spaces[computerMove] = currentPlayer
+    boxes[computerMove].innerText = currentPlayer
+    
+    if(playerHasWon() !== false){
+        playerText.innerHTML = `${currentPlayer} has won!`
+        let winning_blocks = playerHasWon()
+
+        winning_blocks.map( box => boxes[box].style.backgroundColor=winnerIndicator)
+        return
+    }
+
+    currentPlayer = currentPlayer == X_TEXT ? O_TEXT : X_TEXT
 }
 
 const winningCombos = [
