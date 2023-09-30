@@ -2,11 +2,19 @@ let playerText = document.getElementById('playerText')
 let restartBtn = document.getElementById('restartBtn')
 let boxes = Array.from(document.getElementsByClassName('box'))
 
+
+let playerChoice = prompt("Welcome to Tic Tac Toe! Choose 'X' or 'O'");
+
+// Validate user input
+while (playerChoice !== 'X' && playerChoice !== 'O') {
+    playerChoice = prompt("Invalid choice! Please choose 'X' or 'O'");
+  }
+
 let winnerIndicator = getComputedStyle(document.body).getPropertyValue('--winning-blocks')
 
 const O_TEXT = "O"
 const X_TEXT = "X"
-let currentPlayer = X_TEXT
+let currentPlayer = playerChoice;
 let spaces = Array(9).fill(null)
 
 const startGame = () => {
@@ -30,9 +38,9 @@ function boxClicked(e) {
 
         currentPlayer = currentPlayer == X_TEXT ? O_TEXT : X_TEXT
 
-        if (currentPlayer == O_TEXT) {
+        if (currentPlayer == X_TEXT || currentPlayer == O_TEXT) {
             computerTurn() // Computer plays after the user square is chosen
-        }
+          }
     }
 }
 
@@ -96,7 +104,7 @@ function restart() {
 
     playerText.innerHTML = 'Tic Tac Toe'
 
-    currentPlayer = X_TEXT
+    currentPlayer = playerChoice
 }
 
 startGame()
