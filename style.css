@@ -53,6 +53,7 @@ h1 {
 } 
 button {
     padding: 10px 20px;
+    margin: 5px;
     border-radius: 10px;
     background-color: var(--orange);
     color: #333333;
@@ -61,7 +62,36 @@ button {
     transition: 200ms transform;
     font-weight: 600;
 }
+
 button:hover {
     cursor: pointer;
     transform: translateY(-2px);
+}
+
+#beginner, #intermediate {
+    border-color: #333333;
+    border-style: dotted;
+    font-size: small;
+}
+
+#beginner:hover, #intermediate:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    border-style: dotted;
+    border-color: #333333;
+}
+
+.checked::after {
+    content: "\2714";
+    color: green;
+    margin-left: 5px;
+}
+
+.diff-level {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#restart-Btn {
+    align-items: center;
 }
