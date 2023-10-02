@@ -88,6 +88,20 @@ function computerTurnIntermediate() {
 
 currentPlayer = currentPlayer == X_TEXT ? O_TEXT : X_TEXT;
 }
+var done = false;
+for (var i = 0; !done && i < boxes.length; i++) {
+    if (spaces[i] == currentPlayer) {
+        var cellNeighbors = neighbors[i];
+        for (const x of cellNeighbors) {
+            if (!spaces[x]) {
+                spaces[x] = currentPlayer;
+                boxes[x].innerText = currentPlayer;
+                done = true;
+                break;
+            }
+        }
+    }
+}
 
 //Allow user to select the beginner level and validate with a green checkmark upon click
 document.getElementById('beginner').addEventListener('click', function() {
@@ -118,7 +132,18 @@ const winningCombos = [
     [2,5,8],
     [0,4,8],
     [2,4,6]
-];
+]
+/* const neighbors = {
+    0: [1, 3, 4],
+    1: [0, 2, 4],
+    2: [1, 4, 5],
+    3: [0, 4, 6],
+    4: [0, 1, 2, 3, 5, 6, 7, 8],
+    5: [2, 4, 8],
+    6: [3, 4, 7],
+    7: [4, 6, 8],
+    8: [4, 5, 7]
+}; */
 
 function playerHasWon() {
     for (const condition of winningCombos) {
@@ -155,6 +180,10 @@ function restart() {
     playerText.innerHTML = 'Tic Tac Toe';
 }
 
+<<<<<<< HEAD
 startGame();
 
 
+=======
+startGame()
+>>>>>>> e23f3ced63580f0c5c671079e4f81c24e5e7a7b8
